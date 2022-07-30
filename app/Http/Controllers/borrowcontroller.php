@@ -12,6 +12,8 @@ class borrowcontroller extends Controller
     public function store(book $book)
     {
 
+       //  if($book->number !=0)
+       // {}
         $user = \Auth::user();
         $user->req()->attach($book->id);
         $book->update(["number" => $book->number - 1]);
@@ -20,7 +22,6 @@ class borrowcontroller extends Controller
 
     public function destroy($id, book $book, user $user)
     {
-
         $book->update(["number" => $book->number + 1]);
         $user = User::find($user->id);
         $user->req()->wherePivot('id', $id)->detach();
@@ -98,9 +99,11 @@ class borrowcontroller extends Controller
         ]);
         return redirect()->back();
     }
-    public function  DelBorrowReq($id)
+
+    public function  DelBorrowReq($id, book $book)
     {
         $user = \Auth::user();
+        $book->update(["number" => $book->number + 1]);
         $us=User::find($user->id);
         $us->req()->wherePivot('id',$id)->detach();
          return redirect()->back();
