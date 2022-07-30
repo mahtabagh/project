@@ -13,7 +13,7 @@
 
     @endif
 
-    <form action="{{route('updatebook',[$book->id])}}" method="post" style="background-color: rgb(236, 236, 236); border-radius: 7px;" enctype="multipart/form-data">
+    <form action="{{route('updatebook')}}" method="post" style="background-color: rgb(236, 236, 236); border-radius: 7px;" enctype="multipart/form-data">
         @csrf
         <fieldset>
             <h1>
@@ -40,6 +40,9 @@
                 <label>اپلود عکس </label>
                 <input class="form-control" type="file" name="cover" id="cover" value=" {{$book->cover_file_name}}" style="width: 50%;"> 
                 <br><br>
+                
+                <input type="hide" name="bookid" value={{$book->id}}>
+                
                 <button> ثبت ویرایش</button>
             </div>
         </fieldset>
