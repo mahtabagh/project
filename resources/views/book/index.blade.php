@@ -30,10 +30,9 @@
 
       <br>
       @if(@Auth::user()->role == 'a')
-      <a class="btn btn-xs btn-danger " href="{{ route('delbook',[$b]) }}" onclick="return confirm('از حذف این کتاب مطمین هستید؟')">حذف کتاب</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-
+      <a class="btn btn-xs btn-danger " href="{{ route('delbook',[$b]) }}" onclick="return confirm('از حذف این کتاب مطمین هستید؟')">حذف کتاب</a>
       @endif
-      <a class="btn btn-xs btn-info " href="{{ route('showbook',[$b]) }} "> ادامه مطلب</a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <a class="btn btn-xs btn-info " href="{{ route('showbook',[$b]) }} "> ادامه مطلب</a>
 
       @if(@Auth::user()->role == 'a')
       <a class="btn btn-xs btn-primary " href="{{ route('editbook',[$b]) }} "> ویرایش</a>

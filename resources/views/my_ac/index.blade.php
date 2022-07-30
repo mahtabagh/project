@@ -34,13 +34,13 @@
     <h2>{{$user->name}}</h2>
     <h2>{{$user->email}}</h2>
     <br><br>
-    <a class="btn btn-xs btn-success" href="{{route('myfollowing')}}"> &nbsp کسانی که دنبال میکنید &nbsp </a>
-    <a class="btn btn-xs btn-success" href="{{route('myfollowers')}}"> &nbspکسانی که شمارا دنبال میکنند &nbsp </a>
+    <a class="btn btn-xs btn-success" href="{{route('myfollowing')}}">  کسانی که دنبال میکنید  </a>
+    <a class="btn btn-xs btn-success" href="{{route('myfollowers')}}"> کسانی که شمارا دنبال میکنند  </a>
     <hr><br><br>
 
-    <a class="btn btn-xs btn-info " href="{{route('showmybook')}}"> &nbsp کتاب خوانده شده&nbsp </a>
-    <a class="btn btn-xs btn-dark " href="{{route('showmyNowbook')}}"> &nbsp کتاب های در حال خواندن&nbsp </a>
-    <a class="btn btn-xs btn-warning " href="{{route('myborrowrequest')}}"> &nbsp درخواست ها &nbsp </a>
+    <a class="btn btn-xs btn-info " href="{{route('showmybook')}}">  کتاب خوانده شده </a>
+    <a class="btn btn-xs btn-dark " href="{{route('showmyNowbook')}}">  کتاب های در حال خواندن </a>
+    <a class="btn btn-xs btn-warning " href="{{route('myborrowrequest')}}">  درخواست ها </a>
 </center>
 
 @endsection

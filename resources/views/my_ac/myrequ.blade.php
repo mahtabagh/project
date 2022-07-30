@@ -20,7 +20,7 @@
         <tbody>
             <tr align="center">
                 @if($m->pivot->answer==0 )
-                <td><a class="btn btn-xs btn-danger" href="{{ route('DelBorrowReq',[ $m->pivot->id]) }}" onclick="return confirm('از لغو درخواست خود مطمِن هستید؟')">لغو درخواست</a></td>
+                <td><a class="btn btn-xs btn-danger" href="{{ route('DelBorrowReq',[ $m->pivot->id , $m]) }}" onclick="return confirm('از لغو درخواست خود مطمِن هستید؟')">لغو درخواست</a></td>
                 <td> امانت گرفتن</td>
                 @endif
 

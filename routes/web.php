@@ -52,7 +52,7 @@ Route::get('/mybook/book', [borrowcontroller::class,'showmybook'])->middleware([
 Route::get('/myNowbook/book', [borrowcontroller::class,'showmyNowbook'])->middleware(['auth'])->name('showmyNowbook');
 Route::get('/myborrowrequest/book', [borrowcontroller::class,'myborrowrequest'])->middleware(['auth'])->name('myborrowrequest');
 Route::get('/returnRequest /book/{id}/{book_id}', [borrowcontroller::class,'returnRequest'])->middleware(['auth'])->name('returnRequest');
-Route::get('/borrow/destroy/request/{id}', [borrowcontroller::class,'DelBorrowReq'])->middleware(['auth'])->name('DelBorrowReq');
+Route::get('/borrow/destroy/request/{id}/{book}', [borrowcontroller::class,'DelBorrowReq'])->middleware(['auth'])->name('DelBorrowReq');
 Route::get('/borrow/back/destroy/request/{book}/{id}', [borrowcontroller::class,'DelRefudsReq'])->middleware(['auth'])->name('DelRefudsReq');
 
 
@@ -72,7 +72,7 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/books/add', [bookcontroller::class, 'store'])->middleware(['auth'])->name('storebook');
     Route::get('/books/delete/{book}', [bookcontroller::class, 'destroy'])->middleware(['auth'])->name('delbook');
     Route::get('/books/edit/{book}', [bookcontroller::class, 'edit'])->middleware(['auth'])->name('editbook');
-    Route::post('/books/update/{book}', [bookcontroller::class, 'update'])->middleware(['auth'])->name('updatebook');
+    Route::post('/books/update', [bookcontroller::class, 'update'])->middleware(['auth'])->name('updatebook');
     Route::get('/comments/delete/{c}/{b}', [commentcontroller::class,'destroy'])->middleware(['auth'])->name('delcomm');
 });
 
