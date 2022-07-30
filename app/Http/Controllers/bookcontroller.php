@@ -12,13 +12,13 @@ class bookcontroller extends Controller
     public function index()
     {
         $bks = Book::all();
-        $url = Storage::url('public/files/' );
-        return view('book.index', ['bks' => $bks, 'url'=>$url]);
+        $url = Storage::url('public/files/');
+        return view('book.index', ['bks' => $bks, 'url' => $url]);
     }
 
     public function store(Request $request)
     {
-    
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'number' => 'required|int|min:0',
@@ -42,8 +42,8 @@ class bookcontroller extends Controller
         book::create(["title" => $request->title, "author" => $request->author, "publication_year" => $request->puby, "description" => $request->des, "number" => $request->number, 'cover_file_name' => $newcoverfilename, 'original_cover_file_name' => $coverfilename]);
 
         $bks = Book::all();
-        $url = Storage::url('public/files/' );
-        return view('book.index', ['bks' => $bks, 'url'=>$url]);
+        $url = Storage::url('public/files/');
+        return view('book.index', ['bks' => $bks, 'url' => $url]);
     }
 
 
@@ -52,8 +52,8 @@ class bookcontroller extends Controller
         $count = Book::find($book->id)->rate()->where('users.id', \Auth::user()->id)->count();
         $book->load('us_comments');
         $url = Storage::url('public/files/' . $book->cover_file_name);
-        $url_u = Storage::url('public/files/' );
-        return view('book.show', ['book' => $book, 'cover_url' => $url , 'cover_url_u'=>$url_u, 'cnt'=>$count]);
+        $url_u = Storage::url('public/files/');
+        return view('book.show', ['book' => $book, 'cover_url' => $url, 'cover_url_u' => $url_u, 'cnt' => $count]);
     }
 
 
@@ -64,7 +64,7 @@ class bookcontroller extends Controller
     }
 
 
-    public function update(Request $request, book $book)
+    public function update(Request $request)
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -85,19 +85,16 @@ class bookcontroller extends Controller
             $coverfile,
             $newcoverfilename
         );
-
+        $book = Book::find($request->bookid);
         $book->update(["title" => $request->title, "author" => $request->author, "publication_year" => $request->puby, "description" => $request->des, "number" => $request->number, 'cover_file_name' => $newcoverfilename, 'original_cover_file_name' => $coverfilename]);
         $bks = Book::all();
-        $url = Storage::url('public/files/' );
-        return view('book.index', ['bks' => $bks, 'url'=>$url]);
-        
-    
+        $url = Storage::url('public/files/');
+        return view('book.index', ['bks' => $bks, 'url' => $url]);
     }
 
     public function destroy(book $book)
     {
         $book->delete();
-        $bks = Book::all();
         return redirect()->back();
     }
 
@@ -114,14 +111,13 @@ class bookcontroller extends Controller
             'rating' => 'required|int|min:1|max:5',
         ]);
 
-     
-        $book=book::find($request->book_id);
-        $book->update(["numberOfrate"=>$book->numberOfrate+1, "sumOfrate"=>$book->sumOfrate+$request->rating]);
-        $user = \Auth::user();
-        $book->rate()->attach($user->id, ['rate_num'=>$request->rating]);
+        $count = Book::find($request->book_id)->rate()->where('users.id', \Auth::user()->id)->count();
+        if ($count == 0) {
+            $book = book::find($request->book_id);
+            $book->update(["numberOfrate" => $book->numberOfrate + 1, "sumOfrate" => $book->sumOfrate + $request->rating]);
+            $user = \Auth::user();
+            $book->rate()->attach($user->id, ['rate_num' => $request->rating]);
+        }
         return redirect()->back();
-       
     }
-    
-
 }
