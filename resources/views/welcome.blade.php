@@ -63,7 +63,7 @@
     <br><br>
     <h4>(وارد حساب کاربری خود شده و برروی لینک زیر کلیک کنید)</h4>
     <br>
-    <h4><a class="a" href="{{ route('bookindex')}}"> &nbsp&nbspورود&nbsp&nbsp</a></h4>
+    <h4><a class="a" href="{{ route('home')}}"> &nbsp&nbspورود&nbsp&nbsp</a></h4>
 
   </center>
 

@@ -16,9 +16,8 @@
     <button><i class="fa fa-search"></i></button>
   </fieldset>
 </form>
-
-
 <br>
+
 
 @foreach ($bks as $b)
 <center>
@@ -32,6 +31,7 @@
       @if(@Auth::user()->role == 'a')
       <a class="btn btn-xs btn-danger " href="{{ route('delbook',[$b]) }}" onclick="return confirm('از حذف این کتاب مطمین هستید؟')">حذف کتاب</a>
       @endif
+      
       <a class="btn btn-xs btn-info " href="{{ route('showbook',[$b]) }} "> ادامه مطلب</a>
 
       @if(@Auth::user()->role == 'a')
@@ -41,8 +41,7 @@
 
     </div>
   </div>
-<br>
-<br>
+<br><br>
 
 </center>
 @endforeach

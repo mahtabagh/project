@@ -20,7 +20,7 @@ class usercontroller extends Controller
         $url = Storage::url('public/files/' . $user->cover_file_name);
        
         $count = \Auth::user()->follows()->where('users.id', $user->id)->count();
-        $books=$user->req()->where('answer',3 )->get();
+        $books=$user->req()->get();
 
         $url2 = Storage::url('public/files/' );
         return view('user.usershow', ['user' => $user ,'count' => $count , 'books' => $books,'cover_url' => $url,'url2' => $url2]);
@@ -37,6 +37,12 @@ class usercontroller extends Controller
     {
         $u = User::find(\Auth::id());
         $u->follows()->detach($user->id);
+        return redirect()->back();
+    }
+    public function remove(user $user)
+    {
+        $u = User::find(\Auth::id());
+        $u->follow_me()->detach($user->id);
         return redirect()->back();
     }
 
@@ -77,7 +83,8 @@ class usercontroller extends Controller
 
     public function edit()
     {
-        return view('my_ac.edit');
+        $url = Storage::url('public/files/');
+        return view('my_ac.edit',['url'=>$url]);
     }
 
     public function update(Request $request)
@@ -100,8 +107,16 @@ class usercontroller extends Controller
             $newcoverfilename
         );
         $user = \Auth::user();
-        $user->update(["name" => $request->name, 'cover_file_name' => $newcoverfilename, 'original_cover_file_name' => $coverfilename]);
+        $user->update(["name" => $request->name, 'cover_file_name' => $newcoverfilename, 'original_cover_file_name' => $coverfilename ,'email' => $request->email]);
         $url = Storage::url('public/files/' . \Auth::user()->cover_file_name);
         return view('my_ac.index', ['user' =>\Auth::user(),'cover_url' => $url]);
+    }
+    public function home()
+    {
+        $users = User::find(\Auth::id())->follows()->get();
+        $users->load('req');
+     
+        $url = Storage::url('public/files/');
+        return view('home', ['users' => $users , 'url'=>$url]);
     }
 }

@@ -14,9 +14,14 @@
             <br><br>
 
             <div class="form-group">
+                <label>ایمیل</label>
+                <input type="email" class="form-control" name="email" required value="{{Auth::user()->email}}" style="width: 50%;">
+                <br><br>
+
                 <label>نام</label>
                 <input type="text" class="form-control" name="name" required value="{{Auth::user()->name}}" style="width: 50%;">
                 <br><br>
+
                 
                 <label> اپلود عکس شما </label>
                 <input class="form-control" type="file" name="cover" id="cover" style="width: 50%;"> 

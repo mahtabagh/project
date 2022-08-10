@@ -41,7 +41,7 @@
                 <input class="form-control" type="file" name="cover" id="cover" value=" {{$book->cover_file_name}}" style="width: 50%;"> 
                 <br><br>
                 
-                <input type="hide" name="bookid" value={{$book->id}}>
+                <input type="hidden" name="bookid" value={{$book->id}}>
                 
                 <button> ثبت ویرایش</button>
             </div>

@@ -30,6 +30,7 @@ Route::get('/books/index', [bookcontroller::class, 'index'])->middleware(['auth'
 Route::get('/books/show/{book}', [bookcontroller::class, 'show'])->middleware(['auth'])->name('showbook');
 Route::post('/books/show/rate', [bookcontroller::class, 'NewRateBook'])->middleware(['auth'])->name('NewRateBook');
 
+Route::get('/home', [usercontroller::class, 'home'])->middleware(['auth'])->name('home');
 
 
 Route::post('/comments/add', [commentcontroller::class,'store'])->middleware(['auth'])->name('storecomm');
@@ -42,6 +43,7 @@ Route::post('/users/index/search', [usercontroller::class, 'search'])->middlewar
 Route::get('/myaccount/index', [usercontroller::class,'my_index'])->middleware(['auth'])->name('myaccountindex');
 Route::get('/myfollowing/following', [usercontroller::class,'my_following'])->middleware(['auth'])->name('myfollowing');
 Route::get('/myfollowers/followers', [usercontroller::class,'my_followers'])->middleware(['auth'])->name('myfollowers');
+Route::get('/myfollower/remove/{user}', [usercontroller::class,'remove'])->middleware(['auth'])->name('userremove');
 
 
 

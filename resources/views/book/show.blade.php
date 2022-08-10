@@ -109,10 +109,7 @@
 
               </div>
               @if($cnt !=0)
-              <button class="btn" disabled>
-                ثبت امتیاز
-              </button>
-              <br>
+              
               <p class="text-danger">شما امتیاز خود را ثبت کرده اید</p>
               @else
               <button class="btn">

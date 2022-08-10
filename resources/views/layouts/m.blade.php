@@ -192,6 +192,8 @@
         <div class="ml-auto" style="margin-top: 5.5cm;">
             <div class="sidebar">
                 <center>
+                <a href="{{route('home')}}">خانه</a>
+
                     <a href="{{ route('bookindex')}}"> کتاب ها</a>
                     <a href="{{ route('userindex')}}">کاربران</a>
                     <a href="{{ route('myaccountindex')}}">حساب کاربری من</a>
